@@ -1,0 +1,376 @@
+@charset "utf-8";
+.header{ height:39px; border-bottom:1px solid #cacaca; background:#e3e3e3; padding:0 20px; line-height:39px; font-size: 12px;color: #171e24;font-weight: normal;}
+.searchbox{ padding:10px 30px;}
+.searchbox:after{ display:block; content:''; clear:both}
+.search_cli{ float:left;height: 33px;line-height: 33px; font-size:12px; margin-right:20px}
+.search_cli input{width: 150px; height: 33px;line-height: 33px;   font-size: 12px; padding: 4px;    
+    padding-left: 5px;
+    white-space: normal;
+    vertical-align: top;
+    outline-style: none;
+    resize: none;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0; margin-left:5px}
+.searchbox a{ padding:0 20px; height:35px; float:left; text-align:center; color:#fff;border: 1px solid #1da02b;    border-radius:3px;cursor: pointer;}
+.searchbox input{ height:20px; font-size:12px; margin-bottom:5px}
+.pagediv{ position: absolute; left: 50%; top: 0;  line-height: 48px; margin-left: -130px; font-size: 12px; color:  #178022}
+.thispage{ width: 30px; height: 30px; text-align: center;}
+.select_page{ width: 50px; height: 30px; margin-left: 15px; text-align: left; font-size: 12px;}
+.change_page{ font-size: 17px; padding: 0 5px; position: relative; top: 2px; cursor: pointer;}
+.page_hang{ padding: 0 5px; font-size: 12px;}
+.searchbox td{ height:25px;}
+.yewu{ padding:10px 30px; max-width: 1500px}
+.yewu input{ height:20px; font-size:12px; }
+
+.yewu td{ height:30px}
+.searchbox button{ padding:0 10px; margin-top:10px}
+.table { overflow:auto; font-size:12px; border-bottom:1px solid #cacaca; padding:5px;}
+/*::selection {
+    background-color: transparent; 
+   
+}
+
+::-moz-selection {
+   background-color: transparent; 
+ 
+}
+
+::-webkit-selection {
+   background-color: transparent; 
+   
+} */
+
+.table tbody{ }
+.table table{ min-width:1400px; border-right:1px solid #cacaca; border-bottom:1px solid #cacaca;}
+.table td{ border-left:1px solid #cacaca; border-top:1px solid #cacaca; height:38px; padding:0 10px}
+.table th{ border-left:1px solid #cacaca;border-top:1px solid #cacaca; height:38px; background:#f1f1f1; text-align:left; padding:0 10px;}
+.table tr:nth-child(even){ background:#f9f9f9}
+.clear{ clear:both;}
+.table tr:hover{ background:#D2F4AE;}
+.table tr.active{ background:#D2F4AE;}
+.toolbox{ margin-top:15px;}
+.tool{height: 28px;line-height: 25px; font-size:12px; margin-right:20px; display: inline-block}
+.tool a{ padding:0 20px; height:28px; float:left;    background: linear-gradient(rgb(232, 232, 232) 0px, rgb(232, 232, 232) 100%) repeat-x; text-align:center; border: 1px solid #1da02b;    border-radius:3px;    color: rgb(0, 0, 0);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(175, 175, 175);
+    border-image: initial;    cursor: pointer;}
+.tool a:hover{    color: rgb(0, 0, 0);
+    filter: none;
+    background: rgb(246, 246, 246);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(175, 175, 175);
+    border-image: initial;}
+.tool a.active{background: #1da02b;border: 1px solid #1da02b; color:#fff}
+.renyuaninfo{ margin-top:20px}
+.bodybox{  }
+.infobox{}
+.table_tool{ padding:10px; position: relative;}
+.table_tool:after{ display:block; content:''; clear:both}
+
+.table-max-height{max-height: 530px}
+.pd-20 {
+   
+}
+.tabBar {
+    border-bottom: 2px solid #222;
+}
+.myinputbox {
+    margin-top: 30px;
+}
+.mybonbox {
+    margin-top: 25px;
+}
+.tabBar span {
+    background-color: #e8e8e8;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 15px;
+}
+.cl:after, .clearfix:after {
+    content: "\20";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.form-horizontal .form-label {
+    margin-top: 3px;
+    cursor: text;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.form-label {
+    display: block;
+    color: #555;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+[class^="col-"], [ class*=" col-"] {
+    box-sizing: border-box;
+    float: left;
+    min-height: 1px;
+    position: relative;
+}
+
+label, .placeholder {
+    font-size: 12px;
+}
+.c-red, .c-red a, a.c-red {
+    color: red;
+}
+.form-horizontal .form-label {
+    margin-top: 3px;
+    cursor: text;
+    text-align: right;
+    padding-right: 10px;
+}
+.form-horizontal .formControls {
+    padding-right: 10px;
+}
+
+.formControls {
+    position: relative;
+}
+.col-6 {
+    width: 50%;
+}
+.formControls>* {
+    vertical-align: middle;
+}
+.status_radio {
+    position: relative;
+    top: 3px;
+    margin-right: 10px;
+}
+input[type="radio"], input[type="checkbox"] {
+    line-height: normal;
+    margin-top: -4px;
+}
+input[type="submit"], input[type="reset"], input[type="button"], input[type="text"], input[type="password"] {
+    -webkit-appearance: none;
+    outline: 0;
+}
+
+.formControls>* {
+    vertical-align: middle;
+}
+.input-text,textarea{ width:100%}
+input, textarea {
+    box-sizing: border-box;
+    border: solid 1px #ddd;
+    
+	font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";
+    -webkit-transition: all .2s linear 0s;
+    -moz-transition: all .2s linear 0s;
+    -o-transition: all .2s linear 0s;
+    transition: all .2s linear 0s;
+	font-size: 12px;
+    height: 31px;
+    line-height: 1.42857;
+    padding: 2px;
+}
+
+.input-text, .btn, .input-text.size-M, .btn.size-M {
+    font-size: 12px;
+    height: 31px;
+    line-height: 1.42857;
+    padding: 4px;
+}
+.formControls>* {
+    vertical-align: middle;
+}
+.form-horizontal .row {
+    display: table;
+    width: 100%;
+}
+
+.form .row {
+    margin-top: 15px;
+}
+
+.row {
+    box-sizing: border-box;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
+    color: #fff;
+    background-color: #0a6999;
+    border-color: #0a6999;
+}
+input[type="submit"], input[type="reset"], input[type="button"], input[type="text"], input[type="password"] {
+    -webkit-appearance: none;
+    outline: 0;
+}
+
+.btn {
+    display: inline-block;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 400;
+    white-space: nowrap;
+    vertical-align: middle;
+    -moz-padding-start: npx;
+    -moz-padding-end: npx;
+    border: solid 1px #ddd;
+    background-color: #fff;
+    width: auto;
+    -webkit-transition: background-color .1s linear;
+    -moz-transition: background-color .1s linear;
+    -o-transition: background-color .1s linear;
+    transition: background-color .1s linear;
+}
+
+.btn, .btn.size-M {
+    padding: 4px 12px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #5a98de;
+    border-color: #5a98de;
+}
+.input-text,  .input-text.size-M, .btn.size-M {
+    font-size: 12px;
+    height: 25px;
+    line-height: 1.42857;
+    padding: 4px;
+}
+.btn{ height: 31px;}
+.radius {
+    border-radius: 4px;
+    overflow: hidden;
+}
+.select-box, .select-box.size-M {
+    height: 31px;
+   
+}
+
+.select-box {
+    box-sizing: border-box;
+    vertical-align: middle;
+    width: 100%;
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(221, 221, 221);
+    border-image: initial;
+}
+
+.select, .size-M .select {
+    font-size: 12px;
+}
+input[type="checkbox"] {
+    line-height: normal;
+    margin-top: -4px;
+}
+.select {
+    border: solid 1px #ddd;
+    box-sizing: border-box;
+    cursor: pointer;
+    line-height: normal;
+    font-weight: normal;
+    width: 100%;
+}
+.loudonglist{width: 230px; height: 680px;  border-right: 1px solid #ddd; position: absolute; left: 0; top: 0}
+.fenhubox:after{ display: block; content: ''; clear: both}
+.fenhubox{ position: relative; height: 680px}
+.left_tree {
+  
+    
+    overflow-y: auto;
+}
+.treeul {
+    padding: 10px;
+    padding-top: 0px;
+}
+.tree-node {
+    height: 22px;
+    white-space: nowrap;
+    cursor: pointer;
+    line-height: 22px;
+}
+.tree-title{ position: relative; top: 2px}
+.tree-hit {
+    cursor: pointer;
+    visibility: hidden;
+}
+.tree-expanded, .tree-collapsed, .tree-folder, .tree-folder-open, .tree-file, .tree-checkbox, .tree-indent {
+    display: inline-block;
+    width: 16px;
+    height: 18px;
+    vertical-align: middle;
+    overflow: hidden;
+}
+.fenhuboxright{ margin-left:230px; padding: 10px}
+.fenhubox_tab_nav>li{ float: left;    background-color: #e3e3e3; line-height: 20px; padding:2px 15px; border: 1px solid #ddd; border-bottom: none;border-radius: 5px 5px 0 0; margin-right: 5px}
+.fenhubox_tab_nav>li.selected{ background:#fff;}
+.fenhubox_tab_nav:after{ display: block; content: ''; clear: both}
+.fenhubox_tab_nav{border-bottom: 1px solid #ddd;}
+.tree-collapsed {
+    background: url(/public/home/images/tree_icons.png) no-repeat 0px 0px;
+}
+.tree-folder {
+    background: url(/public/home/images/tree_icons.png) no-repeat -208px 0;
+}
+.tree_sub { display: none
+}
+.treeul>li.nodeactive>.tree-node {
+    background: #feeac0;
+}
+.tree-file {
+    background: url(/public/home/images/tree_icons.png) no-repeat -240px 0;
+}
+.tree-expanded {
+    background: url(/public/home/images/tree_icons.png) no-repeat -18px 0px;
+}
+.tree-folder-open {
+    background: url(/public/home/images/tree_icons.png) no-repeat -224px 0;
+}
+.foot2 {
+	width: 700px;
+	height: 40px;
+	margin: 0px auto 10px;
+	margin-top: 20px;
+}
+.tool {
+	float: left;
+	height: 28px;
+	line-height: 25px;
+	font-size: 12px;
+	margin-right: 20px;
+}
+.tool a.active {
+	background: #1da02b;
+	border: 1px solid #1da02b;
+	color: #fff;
+}
+.tool a {
+	padding: 0 20px;
+	height: 28px;
+	float: left;
+	background: linear-gradient(rgb(232, 232, 232) 0px, rgb(232, 232, 232) 100%) repeat-x;
+	text-align: center;
+	border: 1px solid #1da02b;
+	border-radius: 3px;
+	color: rgb(0, 0, 0);
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(175, 175, 175);
+	border-image: initial;
+	cursor: pointer;
+}
+
+.checkloudong{ position:relative; line-height: 21px; top: 13px; margin-right:5px}
+.ywright_header{ padding: 10px; border: 1px solid #ddd; margin-bottom: 10px}
+.ywright_header:after{display: block; content: ''; clear: both;}
+.ywrighttool{ float: right; margin: 0 5px;}
