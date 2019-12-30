@@ -23,16 +23,17 @@ router.post('/',async (ctx,next)=>{
     let {username,userpass}= ctx.request.fields;
     let admins = JSON.parse(await AwaitFs.readFile(Path.resolve(__dirname,'../../../admins.json')));
     let admin =findAdmin(username);
-        console.log(admin);
     if(!username||!userpass){
         ctx.body = {code:0,msg:'用户名和密码不能为空！'};
     }else if(admin.length==0){
         ctx.body = {code:0,msg:'用户不存在！'};
     }else if(admin[0].password!=md5(userpass+ctx.config.ADMIN_PREFIX)){
-        console.log(admin[0].password);
-        console.log(md5(userpass+ctx.config.ADMIN_PREFIX));
+        // console.log(admin[0].password);
+        // console.log(md5(userpass+ctx.config.ADMIN_PREFIX));
         ctx.body = {code:0,msg:'密码错误！'};
     }else{
+        //存在session 
+        ctx.session['admin']=username;
         ctx.body = {code:200,msg:'登录成功'};
     }
     

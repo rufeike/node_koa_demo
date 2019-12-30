@@ -11,7 +11,7 @@ module.exports = {
     DB_PORT:3306,
     DB_USER:'root',
     DB_PWD:'root',
-    DB_NAME:'image',
+    DB_NAME:'yida',
 
     //http相关
     HTTP_PORT:8888,

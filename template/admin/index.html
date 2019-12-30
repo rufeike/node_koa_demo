@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>泉州市易达信息科技有限公司</title>
+<link href="/public/admin/css/main.css" rel="stylesheet" type="text/css">
+<link href="/public/admin/css/font-awesome.css" rel="stylesheet" type="text/css">
+<script src="/public/admin/js/jquery.js"></script>
+<script src="/public/admin/js/layer/layer.js"></script>
+<script>
+$(function(){
+	init()
+ 
+	$(window).resize(function(e) {
+        init()
+    });
+	
+	$('.left_nav_sub>li>a').click(function(e){
+		e.stopPropagation()
+		e.preventDefault();
+		var li = $(this).parent();
+		$('.left_nav_sub>li').removeClass('active');	
+		li.addClass('active');
+		
+		var url =  $(this).attr('href');
+		if(url != "javascript:void(0)"){
+			var iframeurl = new Array();
+			$.each($('.iframebox>iframe'),function(k,v){
+				iframeurl[k] = $(this).attr('src');
+			})
+			var isurl = $.inArray(url, iframeurl);
+			
+			var text = $(this).text();
+			
+			if(isurl == -1){
+				$('.right_nav>ul>li').removeClass('active');
+				$('.right_nav>ul').append('<li class="active">'+text+'<span class="close_ico"></span></li>');
+				$('.iframebox>iframe').removeClass('active');
+				$('.iframebox').append('<iframe  class="mainiframe active" name="main_iframe" src="'+url+'" frameborder="no" border="no" height="100%" width="100%" scrolling="yes"></iframe>');
+			}else{
+				$('.right_nav>ul>li').eq(isurl).addClass('active').siblings().removeClass('active');
+				$('.iframebox>iframe').eq(isurl).addClass('active').siblings().removeClass('active');
+				$('.iframebox>iframe').eq(isurl).attr('src',url);
+			}
+		}
+		
+		
+	})
+	$('.left_nav>li>a').click(function(e){
+		e.stopPropagation()
+		e.preventDefault();
+		var li = $(this).parent();
+		var active = li.hasClass('active');
+		if(!active){
+			$('.left_nav>li').removeClass('active').find('.left_nav_sub').slideUp();
+			li.addClass('active').find('.left_nav_sub').stop().slideDown();
+			$('i.nav-fa').removeClass('fa-angle-down').addClass('fa-angle-right');
+			li.find('i.nav-fa').removeClass('fa-angle-right').addClass('fa-angle-down');
+		}else{
+			li.addClass('active').find('.left_nav_sub').stop().slideToggle();
+			a=li.find('.nav-fa').hasClass('fa-angle-right');
+			if(a){
+				li.find('.nav-fa').removeClass('fa-angle-right').addClass('fa-angle-down');
+			}else{
+				$('i.nav-fa').removeClass('fa-angle-down').addClass('fa-angle-right');
+			}
+		}
+		
+		var url = $(this).attr('href');
+		if(url != "javascript:void(0)"){
+			var iframeurl = new Array();
+			$.each($('.iframebox>iframe'),function(k,v){
+				iframeurl[k] = $(this).attr('src');
+			})
+			var isurl = $.inArray(url, iframeurl);
+			
+			var text = $(this).text();
+			
+			if(isurl == -1){
+				$('.right_nav>ul>li').removeClass('active');
+				$('.right_nav>ul').append('<li class="active">'+text+'<span class="close_ico"></span></li>');
+				$('.iframebox>iframe').removeClass('active');
+				$('.iframebox').append('<iframe  class="mainiframe active" name="main_iframe" src="'+url+'" frameborder="no" border="no" height="100%" width="100%" scrolling="yes"></iframe>');
+			}else{
+				$('.right_nav>ul>li').eq(isurl).addClass('active').siblings().removeClass('active');
+				$('.iframebox>iframe').eq(isurl).addClass('active').siblings().removeClass('active');
+				$('.iframebox>iframe').eq(isurl).attr('src',url);	
+			}
+		}
+		
+		
+	})
+	$('.right_nav>ul').on('click','li',function(){
+		$(this).addClass('active').siblings().removeClass('active');	
+		var index = $(this).index();
+		$('.iframebox>iframe').eq(index).addClass('active').siblings().removeClass('active');
+	})
+	$('.right_nav>ul').on('click','.close_ico',function(e){
+		e.stopPropagation()
+		e.preventDefault();
+		var li = $(this).parent();
+		var index = li.index();
+		$('.iframebox>iframe').eq(index).remove();
+		$('.iframebox>iframe').eq(index-1).addClass('active');
+		$('.right_nav>ul>li').eq(index-1).addClass('active');
+		li.remove();
+		
+	})
+	$('#logout').click(function(){
+		top.layer.confirm('你确定要退出吗？',{icon:3},function(){
+			$.post('<{U c=main a=logout}>',{
+				
+			},function(r){
+				if(r == 'success'){
+					window.location.href="<{U c=main a=index}>";
+				}
+			});
+		})
+	})
+})
+function init(){
+	var h = $(window).height();
+	$('#main_left').height(h-92)
+	var w = $(window).width();
+	$('#main_right').width(w-220)
+	$('#main_right').height(h-140)
+	
+	
+}
+
+//清理缓存
+function clearCache(){
+	$.post("<{U c=main a=clearCache}>",function(r){
+		if(r=='success'){
+			layer.msg('清除缓存成功！',{icon:1},function(){
+				window.location.reload();
+			});
+		}else{
+			layer.alert(r,{icon:1});
+		}
+	});
+}
+
+</script>
+<style>
+	
+</style>
+</head>
+<body style="overflow:hidden; min-width: 1100px">
+<div id="header">
+  <a href="<{U m=home c=main a=index}>" target="_blank"><div class="logo" style="font-size:18px;">泉州市易达信息科技有限公司</div></a>
+  <div class="pf-user">
+    <div class="pf-user-photo"> <img src="/public/admin/images/user.png" alt=""> </div>
+    <h4 class="pf-user-name ellipsis"><%=admin%></h4>
+    <span class="toprightfont"><i class="fa fa-sort-desc" aria-hidden="true"></i></span>
+    <div class="pf-user-panel">
+      <ul class="pf-user-opt">
+        <li> <a href="javascript:void(0)"><span class="toprightuserfont"> <i class="fa fa-key fa-fw"></i> </span><span class="pf-opt-name">修改密码</span> </a> </li>
+        <li> <a href="javascript:clearCache()"> <span class="toprightuserfont"><i class="fa fa-refresh" aria-hidden="true"></i></span> <span class="pf-opt-name">清除缓存</span> </a> </li>
+        <li class="pf-logout"> <a id="logout" href="javascript:void(0)"> <span class="toprightuserfont" style="left:2px"><i class="fa fa-sign-out" ></i></span> <span class="pf-opt-name">退出</span> </a> </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="main">
+  <div id="main_left" style="overflow-y: hidden;">
+    <h4 class="left_top  active"><span class="left_top_text"><span class="left_font"><i class="fa fa-tasks" aria-hidden="true"></i></span>系统管理中心</span></h4>
+    <div>
+			<ul class="left_nav active">
+			     <% cate.forEach(item=>{%>
+			      <li> <a href="<%if(item.url){%><%=item.url%><%}else{%>javascript:void(0)<%}%>"><span class="left_nav_box"><span class="left_font leftnavfont"><i class="fa fa-files-o" aria-hidden="true"></i></span><%=item.name%><%if(item.url!=''){%><%}else{%><span class="right_font leftnavfont_right"><i class="nav-fa fa fa-angle-right" aria-hidden="true"></i></span><%}%></span></a>
+			        <!-- <ul class="left_nav_sub" style="display: none; overflow: hidden;">
+						<{foreach from=$c.subcate item=$s}>
+						<li style="padding-left:60px"><a title="<{$s.name}>" style="height: 35px;" href="<{$s.url}>/cate_id/<{$s.cate_id}>"><span class="left_font leftnavfont_sub_right"><i class="fa fa-file-o" aria-hidden="true"></i></span><span style="overflow: hidden; width: 145px; display:inline-block; "><{$s.name}></span></a></li>
+						<{/foreach}>
+			        </ul> -->
+				  </li>
+				  <%})%>
+		    </ul>
+    </div>
+  </div>
+  <div id="main_right">
+    <div class="right_nav">
+      <ul>
+        <li class="active">首页 </li>
+      </ul>
+    </div>
+    <div class="iframebox">
+      <iframe class="mainiframe active" name="main_iframe" src="<{U c=main a=welcome}>" frameborder="no" border="no" height="100%" width="100%" scrolling="yes"></iframe>
+    </div>
+  </div>
+</div>
+<div id="pf-ft">
+  <div class="system-name"> <i class="fa fa-info-circle" aria-hidden="true" style="color: #3c8dbc; font-size:16px; position:relative; top:2px"></i> <span>泉州市易达科技官网管理系统v1.0</span> </div>
+  <div class="copyright-name"> <span>CopyRight&nbsp;2017&nbsp;&nbsp;泉州市易达科技有限公司&nbsp;版权所有</span> <i class="fa fa-circle-o-notch" aria-hidden="true"  style="color: #3c8dbc;"></i> </div>
+</div>
+</body>
+</html>
