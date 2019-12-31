@@ -167,14 +167,15 @@ function clearCache(){
     <h4 class="left_top  active"><span class="left_top_text"><span class="left_font"><i class="fa fa-tasks" aria-hidden="true"></i></span>系统管理中心</span></h4>
     <div>
 			<ul class="left_nav active">
-			     <% cate.forEach(item=>{%>
-			      <li> <a href="<%if(item.url){%><%=item.url%><%}else{%>javascript:void(0)<%}%>"><span class="left_nav_box"><span class="left_font leftnavfont"><i class="fa fa-files-o" aria-hidden="true"></i></span><%=item.name%><%if(item.url!=''){%><%}else{%><span class="right_font leftnavfont_right"><i class="nav-fa fa fa-angle-right" aria-hidden="true"></i></span><%}%></span></a>
-			        <!-- <ul class="left_nav_sub" style="display: none; overflow: hidden;">
-						<{foreach from=$c.subcate item=$s}>
-						<li style="padding-left:60px"><a title="<{$s.name}>" style="height: 35px;" href="<{$s.url}>/cate_id/<{$s.cate_id}>"><span class="left_font leftnavfont_sub_right"><i class="fa fa-file-o" aria-hidden="true"></i></span><span style="overflow: hidden; width: 145px; display:inline-block; "><{$s.name}></span></a></li>
-						<{/foreach}>
-			        </ul> -->
-				  </li>
+				 <% cate.forEach(item=>{%>
+					<%=item.url%>
+					<li> <a href="<%if(item.url!=''){%><%=item.url%><%}else{%>javascript:void(0)<%}%>"><span class="left_nav_box"><span class="left_font leftnavfont"><i class="fa fa-files-o" aria-hidden="true"></i></span><%=item.name%><%if(item.url){%><%}else{%><span class="right_font leftnavfont_right"><i class="nav-fa fa fa-angle-right" aria-hidden="true"></i></span><%}%></span></a>
+						<ul class="left_nav_sub" style="display: none; overflow: hidden;">
+							<% item.sub.forEach(item=>{%>
+							<li style="padding-left:60px"><a title="<%=item.name%>" style="height: 35px;" href="<%=item.url%>"><span class="left_font leftnavfont_sub_right"><i class="fa fa-file-o" aria-hidden="true"></i></span><span style="overflow: hidden; width: 145px; display:inline-block; "><%=item.name%></span></a></li>
+							<%})%>
+						</ul>
+					</li>
 				  <%})%>
 		    </ul>
     </div>
@@ -186,7 +187,7 @@ function clearCache(){
       </ul>
     </div>
     <div class="iframebox">
-      <iframe class="mainiframe active" name="main_iframe" src="<{U c=main a=welcome}>" frameborder="no" border="no" height="100%" width="100%" scrolling="yes"></iframe>
+      <iframe class="mainiframe active" name="main_iframe" src="<%=HTTP_HOST%>/admin/welcome" frameborder="no" border="no" height="100%" width="100%" scrolling="yes"></iframe>
     </div>
   </div>
 </div>

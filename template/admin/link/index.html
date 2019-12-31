@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>易达后台</title>
+		<link href="/public/admin/css/style.css" rel="stylesheet" type="text/css">
+		<link href="/public/admin/css/font-awesome.css" rel="stylesheet" type="text/css">
+		<script src="/public/admin/js/jquery.js"></script>
+		<script src="/public/admin/js/jquery.form.js"></script>
+		<script src="/public/admin/js/layer/layer.js"></script>
+		<script src="/public/admin/js/ueditor/ueditor.all.js"></script>
+		<script src="/public/admin/js/public_method.js"></script>
+		<script>
+			$(function(){
+				//获取页面信息
+				getpageinfo(1);
+
+				$('#button_add').click(function(){
+					var url = $(this).attr('data_url');
+					var link_add = layer.open({
+					  	type: 2,
+					  	title: '友链添加',
+					  	shadeClose: true,
+					  	shade: 0.8,
+					  	area: ['80%', '100%'],
+					  	content: url
+					});
+				})
+
+				$('#table_tbody').on('click','.works_edit',function(){
+					var id = $(this).attr('data_id');
+					var url = "<{U c=link a=link_edit id="+id+"}>";
+					var link_edit = layer.open({
+					  	type: 2,
+					  	title: '友链修改',
+					  	shadeClose: true,
+					  	shade: 0.8,
+					  	area: ['80%', '100%'],
+					  	content: url
+					});
+				})
+
+				$('#table_tbody').on('click','.works_del',function(){
+					var id = $(this).attr('data_id');
+					layer.confirm('确认删除该连接吗?', {icon: 3, title:'删除确认'}, function(index){
+                        $.post('<{U c=link a=link_del}>',{
+							id:id,
+						},function(r){
+							if(r=='success'){
+								layer.msg('删除成功', {
+								  	icon: 6,
+								  	title:'页面友链',
+								},function(){
+						            getpageinfo(1);
+								})
+							}else if(r=='error'){
+								layer.msg('删除失败，请检查网络或稍后再试', {
+								  	icon: 6,
+								  	title:'页面友链',
+								})
+							}
+						})
+                        layer.close(index);
+                    })
+				})
+
+				$('#refresh_btn').click(function(){
+		            getpageinfo(1);
+		        })
+		        $('#lastpage').click(function(){
+		            var page = $(this).attr('page');
+		            getpageinfo(page);
+		        })
+		        $('#firstpage').click(function(){
+		            var page = $(this).attr('page');
+		            getpageinfo(page);
+		        })
+		        $('#prevpage').click(function(){
+		            var page = $(this).attr('page');
+		            getpageinfo(page);
+		        })
+		        $('#nextpage').click(function(){
+		            var page = $(this).attr('page');
+		            getpageinfo(page);
+		        })
+		        $('#nowpage').change(function(){
+		            var page =$(this).val();
+		            getpageinfo(page);
+		        })
+
+			})
+
+
+		function getpageinfo(page){
+			return false;
+	        var pagesize = 4;
+	        var reload=layer.load(0);
+	        $.post('<{U c=link a=indexinfo}>',{
+	            page:page,
+	            pagesize:pagesize,
+	        },function(r){
+	            if(r){
+	                var json = $.parseJSON(r);
+	                $('#table_tbody').html('');
+
+	                $.each(json.link,function(k,v){
+
+	                    $('#table_tbody').append('<tr>'+
+	                    '<td>'+(k+1)+'</td>'+
+	                    '<td>'+v.sort+'</td>'+
+	                    '<td>'+v.name+'</td>'+
+	                    '<td>'+v.url+'</td>'+
+						'<td class="link_img_td"><img style="height:100px;" src="'+v.thumb+'"></td>'+
+	                    '<td>'+v.hidden_text+'</td>'+
+						'<td>'+
+						'<button class="workslist_button works_edit" data_id="'+v.link_id+'">修改</button>'+
+						'<button class="workslist_button works_del" data_id="'+v.link_id+'">删除</button>'+
+						'</td>'+
+	                    '</tr>');
+
+	                })
+	                var pageinfo = json.pager;
+	                $('#nowpage').val(pageinfo.p_now);
+	                $('#nextpage').attr('page',pageinfo.p_next);
+	                $('#prevpage').attr('page',pageinfo.p_prev);
+	                $('#allpager').text(pageinfo.p_allpage);
+	                $('#lastpage').attr('page',pageinfo.p_last);
+	                $('#p_count').text(pageinfo.p_count);
+	                if(!$('#table_tbody').html()){
+		               $('#table_tbody').append('<tr><td colspan="14" align="center" style="color:#f00">对不起，暂无相关数据！</td></tr>'); 
+	                }
+
+	            }else{
+	               $('#table_tbody').empty();
+	               $('#table_tbody').append('<tr><td colspan="14" align="center" style="color:#f00">对不起，暂无相关数据！</td></tr>'); 
+	            }
+	            layer.close(reload);
+	        });
+	    }
+		</script>
+	</head>
+	<body>
+		<div class="main_right_up">
+			<div class="main_right_title"><{$cate.name}></div>
+			<div class="workslist_content">
+            	<div class="workslist_nav">
+                	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <th width="6%">序号</th>
+                                <th width="6%">排序</th>
+                                <th width="20%">友站名称</th>
+                                <th width="20%">友站地址</th>
+                                <th width="30%">缩略图</th>
+                                <th width="10%">状态</th>
+                                <th width="20%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_tbody">
+                        	
+                        </tbody>
+                    </table>
+				</div>
+                <div class="workslist_footer">
+    				<div class="footer_text">
+                        <span class="page1"><a href="javascript:void(0)" id="firstpage">首页</a></span>
+                        <span class="page2"><a href="javascript:void(0)" id="lastpage">尾页</a></span>
+                        <span class="page3"><a href="javascript:void(0)" id="prevpage">上一页</a></span>
+                        第<span class="page4">(<input class="now_page" type="text" id="nowpage" value="<{$pager.p_now}>">)</span>页
+                        <span class="page5"><a href="javascript:void(0)" id="nextpage">下一页,</a></span>
+                        共<span class="page6">(<span id="allpager"><{$pager.p_allpage}></span>)</span>页
+                    </div>
+   				</div>
+            	<div class="button_add"><a id="button_add" data_url="<{U c=link a=link_add}>">添加</a></div>
+            	<div class="button_refresh"><a id="refresh_btn">刷新</a></div>
+            </div>
+		</div>
+    </body>
+</html>
